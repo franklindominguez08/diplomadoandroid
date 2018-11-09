@@ -1,0 +1,46 @@
+/*Given a double-precision number, denoting an amount of money, use the NumberFormat class' 
+getCurrencyInstance method to convert  into the US, Indian, Chinese, and French currency formats. Then print the formatted values as follows:
+
+Sample Input
+12324.134
+
+Sample Output
+
+US: $12,324.13
+India: Rs.12,324.13
+China: ?12,324.13
+France: 12 324,13 €
+
+*/
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double payment = scanner.nextDouble();
+        scanner.close();
+
+        // Write your code here.
+        NumberFormat formatEnglish = NumberFormat.getNumberInstance(Locale.US);
+        formatEnglish = NumberFormat.getCurrencyInstance(Locale.US);
+
+        NumberFormat formatIndian = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));        
+
+        NumberFormat formatChina = NumberFormat.getNumberInstance(Locale.ENGLISH);
+        formatChina = NumberFormat.getCurrencyInstance(Locale.CHINA);
+
+        NumberFormat formatFrance = NumberFormat.getNumberInstance(Locale.ENGLISH);
+        formatFrance = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+
+        System.out.println("US: " + formatEnglish.format(payment));
+        System.out.println("India: " + formatIndian.format(payment));
+        System.out.println("China: " + formatChina.format(payment));
+        System.out.println("France: " + formatFrance.format(payment));
+    }
+}
